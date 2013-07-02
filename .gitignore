@@ -3,3 +3,5 @@ output
 docs
 test/data
 node_modules
+docco.sublime-project
+docco.sublime-workspace
