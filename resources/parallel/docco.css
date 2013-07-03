@@ -33,6 +33,7 @@
 /*--------------------- Layout ----------------------------*/
 html { height: 100%; }
 body {
+  background: #30404f;
   font-family: "aller-light";
   font-size: 14px;
   line-height: 18px;
