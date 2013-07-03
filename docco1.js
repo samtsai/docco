@@ -139,7 +139,7 @@
   };
 
   defaults = {
-    layout: 'pretty',
+    layout: 'linear',
     output: 'docs/',
     template: null,
     css: null,
