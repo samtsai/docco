@@ -139,8 +139,8 @@
   };
 
   defaults = {
-    layout: 'pretty',
-    output: 'docs',
+    layout: 'linear',
+    output: 'docs/',
     template: null,
     css: null,
     extension: null
