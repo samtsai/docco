@@ -139,7 +139,7 @@
   };
 
   defaults = {
-    layout: 'parallel',
+    layout: 'pretty',
     output: 'docs',
     template: null,
     css: null,
