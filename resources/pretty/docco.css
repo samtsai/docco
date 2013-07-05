@@ -192,10 +192,11 @@ ul.sections > li > div {
 }
 
 #jump_page {
-  height: 200px;
+  height: 250px;
   padding: 5px 0 3px;
   margin: 0 0 25px 25px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: none;
 }
 
 #jump_page .source {
