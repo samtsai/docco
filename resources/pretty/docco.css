@@ -150,7 +150,7 @@ ul.sections > li > div {
 
 
 /*---------------------- Jump Page -----------------------------*/
-#jump_to, #jump_page {
+#jump_to, .jump_page {
   margin: 0;
   background: white;
   -webkit-box-shadow: 0 0 25px #777; -moz-box-shadow: 0 0 25px #777;
@@ -160,6 +160,7 @@ ul.sections > li > div {
   text-align: right;
   list-style: none;
 }
+
 
 #jump_to a {
   text-decoration: none;
@@ -190,27 +191,27 @@ ul.sections > li > div {
   display: block;
 }
 
-#jump_page {
+.jump_page {
   height: 250px;
   padding: 5px 0 3px;
   margin: 0 0 25px 25px;
   overflow-y: auto;
-  overflow-x: none;
+  overflow: auto;
   color: #0000FF;
 }
 
-#jump_page .source {
+.jump_page .source {
   display: block;
   padding: 15px;
   text-decoration: none;
   border-top: 1px solid #eee;
 }
 
-#jump_page .source:hover {
+.jump_page .source:hover {
   background: #f5f5ff;
 }
 
-#jump_page .source:first-child {
+.jump_page .source:first-child {
 }
 
 /*---------------------- Low resolutions (> 320px) ---------------------*/
@@ -272,11 +273,11 @@ ul.sections > li > div {
   #jump_wrapper {
     padding: 0;
   }
-  #jump_to, #jump_page {
+  #jump_to, .jump_page {
     font: 10px Arial;
     text-transform: uppercase;
   }
-  #jump_page .source {
+  .jump_page .source {
     padding: 5px 10px;
   }
   #jump_to a.large {

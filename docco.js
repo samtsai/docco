@@ -82,7 +82,8 @@
         lines[i] = maybeCode && (match = /^([ ]{4}|[ ]{0,3}\t)/.exec(line)) ? (isText = false, line.slice(match[0].length)) : (maybeCode = /^\s*$/.test(line)) ? isText ? lang.symbol : '' : (isText = true, lang.symbol + ' ' + line);
       }
     }
-    for (_j = 0, _len1 = lines.length; _j < _len1; _j++) {
+    for (_j = 0, _len1 = lines.length; _j < _len
+      1; _j++) {
       line = lines[_j];
       if (line.match(lang.commentMatcher) && !line.match(lang.commentFilter)) {
         if (hasCode) {
@@ -128,6 +129,7 @@
     html = config.template({
       sources: config.sources,
       css: path.basename(config.css),
+      jsfile: path.basename(config.jsfile),
       title: title,
       hasTitle: hasTitle,
       sections: sections,
@@ -143,6 +145,7 @@
     output: 'docs/',
     template: null,
     css: null,
+    jsfile: null,
     extension: null
   };
 
@@ -159,6 +162,7 @@
       }
       config.template = path.join(dir, 'docco.jst');
       config.css = options.css || path.join(dir, 'docco.css');
+      config.jsfile = options.jsfile || path.join(dir, 'jump_menu.js')
     }
     config.template = _.template(fs.readFileSync(config.template).toString());
     config.sources = options.args.filter(function(source) {
