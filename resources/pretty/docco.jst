@@ -9,25 +9,35 @@
 </head>
 <body>
   <div id="container">
+
     <div id="background"></div>
+
     <% if (sources.length > 1) { %>
       <ul id="jump_to">
         <li>
-          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
-          <a class="small" href="javascript:void(0);">+</a>
-          <div id="jump_wrapper">
-            <input id="autocompletion" placeholder="Enter file name: "/>
-            <!--<div id="jump_source" class="jump_page">
-            </div>-->
-            <div id="jump_source" class="jump_page">
-               <% for (var i=0, l=sources.length; i<l; i++) { %>
-               <% var source = sources[i]; %>
-               <a class="source" href="<%= path.basename(destination(source)) %>">
-                  <%= path.basename(source) %>
-               </a>
-            <% } %>
+          <div id="file_section">
+              <button id="filelist">All files</button>
+              <button id="filechoice">Choose file</button>
           </div>
-        </div>
+          <div id="jump_menu">
+            <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+            <a class="small" href="javascript:void(0);">+</a>
+
+            <div id="jump_wrapper">
+
+              <input id="autocompletion" placeholder="Enter file name: "/>
+              <!--<div id="jump_source" class="jump_page">
+              </div>-->
+              <div id="jump_source" class="jump_page">
+                 <% for (var i=0, l=sources.length; i<l; i++) { %>
+                 <% var source = sources[i]; %>
+                 <a class="source" href="<%= path.basename(destination(source)) %>">
+                    <%= path.basename(source) %>
+                 </a>
+                 <% } %>
+              </div>
+            </div>
+      </div>
         </li>
       </ul>
     <% } %>

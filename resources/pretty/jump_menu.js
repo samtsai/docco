@@ -12,7 +12,7 @@ $auto_links.each(function(index){
 /*for(var i=0;i<auto_links.length;i++){
   $('#jump_result').append('<p>'+auto_links+'</p>');
 }*/
-var sourcedata = [{"label":"NC.nc","value":"aaaaaa"}];
+var sourcedata = [];
 $auto_links.each(function(i){
     sourcedata.push({
          "label": filenames[i],
@@ -21,15 +21,15 @@ $auto_links.each(function(i){
 });
 //alert(sourcedata[2].label+" "+sourcedata[2].value+" "+sourcedata.length+" "+filenames);
 
+bindButtons();
 
-
-var states = [{"label":"PA.pa","value":"file:///Users/duj/Code/docco/docs/bagBarTemplates.html"},{"label":"MD","value":"Maryland"},{"label":"DC","value":"Washington"}];
+//var states = [{"label":"PA.pa","value":"file:///Users/duj/Code/docco/docs/bagBarTemplates.html"},{"label":"MD","value":"Maryland"},{"label":"DC","value":"Washington"}];
 //var tryit = [];
 //for(var j=0;j<sourcedata.length;j++){
    // tryit[j]=sourcedata[j].label;
 //}
-alert(states+" "+states[1].label);
-alert(sourcedata+" "+sourcedata[1].label);
+//alert(states+" "+states[1].label);
+//alert(sourcedata+" "+sourcedata[1].label);
   $("#autocompletion").autocomplete({
     source: function( req, response ) {
               var re = $.ui.autocomplete.escapeRegex(req.term);
@@ -55,4 +55,32 @@ alert(sourcedata+" "+sourcedata[1].label);
       window.location.href = ui.item.value;
     },
   });
+
+function bindButtons(){
+  var buttons = $("#file_section button");
+
+  buttons.on('click',function(e){
+    var $this = $(this);
+    buttons.removeClass('selected').addClass('disabled');
+    $this.addClass('selected').removeClass('disabled');
+
+    switch($this.attr('id')){
+      case 'filelist':
+            val = true;
+            break;
+      case 'filechoice':
+            val = false;
+            break;
+    }
+    alert(val);
+    if(val){
+      $("#jump_source").css("display","block");
+      $("#autocompletion").css("display","none");
+    }
+    else{
+      $("#jump_source").css("display","none");
+      $("#autocompletion").css("display","block");
+    }
+  })
+}
 
