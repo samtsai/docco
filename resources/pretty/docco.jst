@@ -17,15 +17,16 @@
         <li>
           <div id="file_section">
               <button id="filelist">All files</button>
-              <button id="filechoice">Choose file</button>
+              <button id="filechoice">Search file</button>
           </div>
           <div id="jump_menu">
             <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
             <a class="small" href="javascript:void(0);">+</a>
 
             <div id="jump_wrapper">
-
-              <input id="autocompletion" placeholder="Enter file name: "/>
+              <div id="jump_choice">
+                   <input id="autocompletion" placeholder="Enter file name: "/>
+              </div>
               <!--<div id="jump_source" class="jump_page">
               </div>-->
               <div id="jump_source" class="jump_page">
@@ -67,6 +68,7 @@
     </ul>
   </div>
   <% if (sources.length>1){ %>
+     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
      <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
      <script src="jump_menu.js"></script>

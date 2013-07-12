@@ -1,4 +1,5 @@
 //var auto_blank=$('#autocompletion');
+
 var $auto_links=$(".source");
 var filenames = [];
 
@@ -30,7 +31,15 @@ bindButtons();
 //}
 //alert(states+" "+states[1].label);
 //alert(sourcedata+" "+sourcedata[1].label);
-  $("#autocompletion").autocomplete({
+$(document).ready(function(){
+  monkeyPatchAutocomplete();
+  $("#autocompletion")
+  .bind("keydown", function(event){
+    if(event.keyCode == $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active){
+      event.preventDefault();
+    }
+  })
+  .autocomplete({
     source: function( req, response ) {
               var re = $.ui.autocomplete.escapeRegex(req.term);
               var matcher = new RegExp( "^" + re, "i" );
@@ -46,7 +55,7 @@ bindButtons();
               }));
     },
     autoFocus: true,
-    appendTo: "#jump_source",
+    appendTo: "#autocomplete",
     position:{
       my: "right top",
       at: "right bottom"
@@ -54,8 +63,11 @@ bindButtons();
     select: function(event, ui){
       window.location.href = ui.item.value;
     },
+   // close: function(event,ui){
+     // $(".ui-autocomplete").css('display','block');
+    //}
   });
-
+});
 function bindButtons(){
   var buttons = $("#file_section button");
 
@@ -72,15 +84,28 @@ function bindButtons(){
             val = false;
             break;
     }
-    alert(val);
+    //alert(val);
     if(val){
       $("#jump_source").css("display","block");
-      $("#autocompletion").css("display","none");
+      $("#jump_choice").css("display","none");
     }
     else{
       $("#jump_source").css("display","none");
-      $("#autocompletion").css("display","block");
+      $("#jump_choice").css("display","block");
+
+      //alert("success");
+      //$("#ui-id-1").css("z-index","1000");
     }
   })
 }
-
+function monkeyPatchAutocomplete(){
+  var oldFn=$.ui.autocomplete.prototype._renderItem;
+  $.ui.autocomplete.prototype._renderItem = function(ul,item){
+    var re = new RegExp("^" + this.term, "i");
+    var t = item.label.replace(re, "<span style='font-weight: bold; color:blue;'>" + this.term + "</span>");
+    return $("<li></li>")
+           .data("item.autocomplete", item)
+           .append("<a>" + t + "</a>")
+           .appendTo(ul);
+  };
+}
