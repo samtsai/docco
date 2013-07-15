@@ -231,13 +231,13 @@ button{
 }
 .section_caption{
   font-size: 12px;
-  border: 1px solid #989898;
+  padding: 2px;
   background: #c0c0c0;
   font-weight: bold;
   color: #000000;
   border-radius: 4px;
   width: 75px;
-  display: inline-block;
+  display: table;
 }
 
 /*---------------------- Jump Page -----------------------------*/

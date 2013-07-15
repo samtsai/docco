@@ -31,6 +31,7 @@ bindButtons();
 //}
 //alert(states+" "+states[1].label);
 //alert(sourcedata+" "+sourcedata[1].label);
+
 $(document).ready(function(){
   $("#autocompletion")
   .bind("keydown", function(event){
@@ -64,10 +65,24 @@ $(document).ready(function(){
     },
     close: function(event,ui){
      //$(".ui-autocomplete").css('display','block');
-     $("#autocomplete").val("");
+     $("#autocompletion").val("");
     }
   });
 });
+
+$("#autocompletion").click(function(){
+  var $this = $(this);
+  $(this).val("");
+  //another way that select all text: $(this).select();
+
+  //in order to work around Chrome's problme
+  $(this).mouseup(function(){
+    //prevent further mouseup intervention
+    $this.unbind("mouseup");
+    return false;
+  });
+});
+
 function bindButtons(){
   var buttons = $("#file_section button");
 
