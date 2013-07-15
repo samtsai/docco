@@ -297,6 +297,7 @@ button{
 
 .jump_page .source:hover {
   background: rgb(212, 85, 0);
+  font-weight: bold;
   border: 1px solid maroon;
   border-radius: 4px;
 }

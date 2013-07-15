@@ -55,7 +55,7 @@ $(document).ready(function(){
               }));
     },
     autoFocus: true,
-    appendTo: "#autocomplete",
+    appendTo: null,
     position:{
       my: "right top",
       at: "right bottom"
