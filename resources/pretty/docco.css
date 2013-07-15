@@ -114,19 +114,25 @@ pre, tt, code {
       background: transparent;
     }
 
+#aeicon{
+  width: 50px;
+  height: 50px;
+  display: inline;
+  vertical-align: middle;
+}
 
 blockquote {
   border-left: 5px solid #ccc;
   margin: 0;
   padding: 1px 0 1px 1em;
 }
-  .sections blockquote p {
-    font-family: Menlo, Consolas, Monaco, monospace;
-    font-size: 12px; line-height: 16px;
-    color: #999;
-    margin: 10px 0 0;
-    white-space: pre-wrap;
-  }
+.sections blockquote p {
+  font-family: Menlo, Consolas, Monaco, monospace;
+  font-size: 12px; line-height: 16px;
+  color: #999;
+  margin: 10px 0 0;
+  white-space: pre-wrap;
+}
 
 ul.sections {
   list-style: none;
@@ -154,21 +160,34 @@ ul.sections > li > div {
   background-color: #C0C0C0;
   display: block;
 }
-#filechoice{
+#filechoice, #filelist{
   float:left;
   display:inline;
   border: 1 #c0c0c0;
+}
+#filechoice{
   background: rgb(145, 189, 9) repeat-x 0px 0px;
 }
 #filelist{
-  float:left;
-  display:inline;
-  border: 1 #c0c0c0;
   background: rgb(212, 85, 0) repeat-x 0px 0px;
 }
+#filelist:hover, #filechoice:hover{
+  cursor: pointer;
+  -khtml-box-shadow: 10px 10px 5px #000000;
+  -webkit-box-shadow: 10px 10px 5px #000000;
+  -moz-box-shadow: 10px 10px 5px #000000;
+  box-shadow: 10px 10px 5px #000000;
+  padding-left: 45px;
+}
 .selected{
-  background: #0000ff;
-  font: bold;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  cursor: pointer;
+  -khtml-box-shadow: 10px 10px 5px #000000;
+  -webkit-box-shadow: 10px 10px 5px #000000;
+  -moz-box-shadow: 10px 10px 5px #000000;
+  box-shadow: 10px 10px 5px #000000;
+  padding-left: 35px;
 }
 .disabled{
   background: #c0c0c0;
@@ -186,6 +205,41 @@ button{
   font-family: Arial;
   color: #ffffff;
 }
+.ui-widget {
+  font-family: Arial;
+  font-size: 0.8em;
+}
+.ui-corner-all{
+  font-size: 0.9em;
+  font-weight: normal;
+}
+.ui-corner-all .ui-state-focus{
+  background: rgb(145, 189, 9);
+  border: 1px solid maroon;
+  border-radius: 4px;
+}
+.ui-menu .ui-menu-item a.ui-state-focus{
+  font-weight: bold;
+}
+.ui-autocomplete{
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+* html .ui-autocomplete {
+  height: 200px;
+}
+.section_caption{
+  font-size: 12px;
+  border: 1px solid #989898;
+  background: #c0c0c0;
+  font-weight: bold;
+  color: #000000;
+  border-radius: 4px;
+  width: 75px;
+  display: inline-block;
+}
+
 /*---------------------- Jump Page -----------------------------*/
 #jump_to, .jump_page {
   margin: 0;
@@ -196,12 +250,9 @@ button{
   text-align: right;
   list-style: none;
 }
-
-
 #jump_to a {
   text-decoration: none;
 }
-
 #jump_to a.large {
   display: none;
 }
@@ -210,7 +261,6 @@ button{
   font-weight: bold;
   color: #676767;
 }
-
 #jump_to {
   background: #C0C0C0;
   position: fixed;
@@ -218,7 +268,6 @@ button{
   padding: 10px 15px;
   margin:0;
 }
-
 #jump_wrapper {
   display: none;
   padding:0;
@@ -227,12 +276,9 @@ button{
   padding: 10px 15px;
   margin:0;
 }
-
 #jump_to:hover #jump_wrapper {
   display: block;
 }
-
-
 .jump_page{
   height: 200px;
   padding: 5px 0 3px;
@@ -240,23 +286,29 @@ button{
   overflow-y: auto;
   color: #0000FF;
   background: white;
+  border-radius: 4px;
 }
 
 .jump_page .source {
   display: block;
   padding: 15px;
   text-decoration: none;
-  border-top: 1px solid #eee;
 }
 
 .jump_page .source:hover {
-  background: #f5f5ff;
+  background: rgb(212, 85, 0);
+  border: 1px solid maroon;
+  border-radius: 4px;
 }
 
 .jump_page .source:first-child {
 }
 
 #jump_source{
+  display: none;
+}
+
+#jump_choice{
   display: none;
 }
 
@@ -385,13 +437,22 @@ button{
   }
 
   .pilcrow {
-    font: 12px Arial;
+    font-weight: bold;
+    display: block;
+    border: #787878 1px;
+    border-radius: 2px;
+    background: #C0C0C0;
+    width: 75px;
+    height: 15px;
+    font: 10px Arial;
+    font-weight: bold;
     text-decoration: none;
     color: #454545;
     position: absolute;
-    top: 3px; left: -20px;
-    padding: 1px 2px;
+    left: -49px;
+    padding: 2px;
     opacity: 0;
+    margin-botton: 3px;
     -webkit-transition: opacity 0.2s linear;
   }
     .for-h1 .pilcrow {
@@ -400,9 +461,9 @@ button{
     .for-h2 .pilcrow, .for-h3 .pilcrow, .for-h4 .pilcrow {
       top: 35px;
     }
-
   ul.sections > li > div.annotation:hover .pilcrow {
-    opacity: 1;
+    opacity: 0.7;
+    display: block;
   }
 }
 

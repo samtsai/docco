@@ -32,7 +32,6 @@ bindButtons();
 //alert(states+" "+states[1].label);
 //alert(sourcedata+" "+sourcedata[1].label);
 $(document).ready(function(){
-  monkeyPatchAutocomplete();
   $("#autocompletion")
   .bind("keydown", function(event){
     if(event.keyCode == $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active){
@@ -63,9 +62,10 @@ $(document).ready(function(){
     select: function(event, ui){
       window.location.href = ui.item.value;
     },
-   // close: function(event,ui){
-     // $(".ui-autocomplete").css('display','block');
-    //}
+    close: function(event,ui){
+     //$(".ui-autocomplete").css('display','block');
+     $("#autocomplete").val("");
+    }
   });
 });
 function bindButtons(){
@@ -73,8 +73,8 @@ function bindButtons(){
 
   buttons.on('click',function(e){
     var $this = $(this);
-    buttons.removeClass('selected').addClass('disabled');
-    $this.addClass('selected').removeClass('disabled');
+    buttons.removeClass("selected").addClass("disabled");
+    $this.addClass("selected").removeClass("disabled");
 
     switch($this.attr('id')){
       case 'filelist':
@@ -98,14 +98,4 @@ function bindButtons(){
     }
   })
 }
-function monkeyPatchAutocomplete(){
-  var oldFn=$.ui.autocomplete.prototype._renderItem;
-  $.ui.autocomplete.prototype._renderItem = function(ul,item){
-    var re = new RegExp("^" + this.term, "i");
-    var t = item.label.replace(re, "<span style='font-weight: bold; color:blue;'>" + this.term + "</span>");
-    return $("<li></li>")
-           .data("item.autocomplete", item)
-           .append("<a>" + t + "</a>")
-           .appendTo(ul);
-  };
-}
+
