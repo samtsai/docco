@@ -82,8 +82,7 @@
         lines[i] = maybeCode && (match = /^([ ]{4}|[ ]{0,3}\t)/.exec(line)) ? (isText = false, line.slice(match[0].length)) : (maybeCode = /^\s*$/.test(line)) ? isText ? lang.symbol : '' : (isText = true, lang.symbol + ' ' + line);
       }
     }
-    for (_j = 0, _len1 = lines.length; _j < _len
-      1; _j++) {
+    for (_j = 0, _len1 = lines.length; _j < _len1; _j++) {
       line = lines[_j];
       if (line.match(lang.commentMatcher) && !line.match(lang.commentFilter)) {
         if (hasCode) {
