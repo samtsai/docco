@@ -177,7 +177,7 @@ name of the source file.
       hasTitle = first and first.type is 'heading' and first.depth is 1
       title = if hasTitle then first.text else path.basename source
 
-      html = config.template {sources: config.sources, css: path.basename(config.css),
+      html = config.template {sources: config.sources, css: path.basename(config.css), js: path.basename(config.js),
         title, hasTitle, sections, path, destination,}
 
       console.log "docco: #{source} -> #{destination source}"
@@ -191,10 +191,11 @@ Default configuration **options**. All of these may be extended by
 user-specified options.
 
     defaults =
-      layout:     'parallel'
+      layout:     'pretty'
       output:     'docs'
       template:   null
       css:        null
+      js:     null
       extension:  null
 
 **Configure** this particular run of Docco. We might use a passed-in external
@@ -211,13 +212,12 @@ source files for languages for which we have definitions.
         config.public       = path.join dir, 'public' if fs.existsSync path.join dir, 'public'
         config.template     = path.join dir, 'docco.jst'
         config.css          = options.css or path.join dir, 'docco.css'
-      config.template = _.template fs.readFileSync(config.template).toString()
+        config.js       = options.js or path.join dire, 'jump_menu.js'
+        config.template = _.template fs.readFileSync(config.template).toString()
 
-      config.sources = options.args.filter((source) ->
+        config.sources = options.args.filter((source) ->
         lang = getLanguage source, config
-        console.warn "docco: skipped unknown type (#{path.basename source})" unless lang
-        lang
-      ).sort()
+        console.warn "docco: skipped unknown type (#{path.basename source})" unless lang lang).sort()
 
       config
 
@@ -283,6 +283,7 @@ Parse options using [Commander](https://github.com/visionmedia/commander.js).
         .option('-l, --layout [name]',    'choose a layout (parallel, linear, pretty or classic)', c.layout)
         .option('-o, --output [path]',    'output to a given folder', c.output)
         .option('-c, --css [file]',       'use a custom css file', c.css)
+        .option('-j, --js [file]',       'use a custom js file', c.js)
         .option('-t, --template [file]',  'use a custom .jst template', c.template)
         .option('-e, --extension [ext]',  'assume a file extension for all inputs', c.extension)
         .parse(args)
