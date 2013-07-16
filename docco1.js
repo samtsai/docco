@@ -128,7 +128,6 @@
     html = config.template({
       sources: config.sources,
       css: path.basename(config.css),
-      jsfile: path.basename(config.jsfile),
       title: title,
       hasTitle: hasTitle,
       sections: sections,
@@ -140,11 +139,10 @@
   };
 
   defaults = {
-    layout: 'pretty',
+    layout: 'linear',
     output: 'docs/',
     template: null,
     css: null,
-    jsfile: null,
     extension: null
   };
 
@@ -161,7 +159,6 @@
       }
       config.template = path.join(dir, 'docco.jst');
       config.css = options.css || path.join(dir, 'docco.css');
-      config.jsfile = options.jsfile || path.join(dir, 'jump_menu.js')
     }
     config.template = _.template(fs.readFileSync(config.template).toString());
     config.sources = options.args.filter(function(source) {
