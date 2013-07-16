@@ -217,9 +217,7 @@ source files for languages for which we have definitions.
 
         config.sources = options.args.filter((source) ->
         lang = getLanguage source, config
-        console.warn "docco: skipped unknown type (#{path.basename source})" unless lang
-        lang
-      ).sort()
+        console.warn "docco: skipped unknown type (#{path.basename source})" unless lang lang).sort()
 
       config
 
